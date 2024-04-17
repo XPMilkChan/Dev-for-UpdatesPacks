@@ -1,38 +1,38 @@
-; คำสั่งในไฟล์ update.inf 
+; ๅคชๅบ้–ซ่“้ฝ้ฑ— update.inf 
 [Version]
-Signature                 = "$Windows NT$" ;ส่วนหัวสำหรับ Windows เมื่อเรียกใช้
-LanguageType              = %LangTypeValue% ; รหัสภาษา ทำไมต้องใช้ %% เมื่อใช้ Windows จะไปโหลดที่บรรทัดคุณกำหนดไว้
-NtBuildToUpdate           = 2195 ; บิลด์ที่จะถูกอัปเดต
-NtMajorVersionToUpdate    = 5 ;ค่ารุ่น OS ที่ใช้
+Signature                 = "$Windows NT$" ;ๆ๏ฆๅฒ๏ท่่ญ๏ฟฝ Windows ้ก้ฏไพฒ่ญ็’่๏ฟฝ
+LanguageType              = %LangTypeValue% ; ่ฅ ๆ—ๆช ๅฅฟ ็…ง้พ่็ซป่๏ฟฝ %% ้ก้ฏไฟ่ท Windows ไฝฌ้็้ฝ็…ฌ้ จ่—ค็…คๆกๅ ปยฑไฝดๆธฏ๏–
+NtBuildToUpdate           = 2195 ; ็ขฃ้ฝ้ผ’ๆถทไฝฌๅ—จ๏น ๆ้ฅ๏ฟฝ
+NtMajorVersionToUpdate    = 5 ;ๆ–น็–ฐๅต๏ฟฝ OS ็…ฌ้ญฌ่ท
 NtMinorVersionToUpdate    = 0
 MaxNtBuildToUpdate        = 2195 
 MaxNtMajorVersionToUpdate = 5
 MaxNtMinorVersionToUpdate = 0
 MinNtServicePackVersion   = 0
-MaxNtServicePackVersion = 1024 ;รุ่น SP ที่ใช้
-ThisServicePackVersion    = 1024 ;แบน
-CatalogFile               = sp4.cat ;ไฟล์ความปลอดภัย ลายเซ็นไฟล์
-MachineType               = ; ระบุชนิดของ OS ที่ใช้ 98(คอมในประเทศญี่ปุ่นเท่านั่น)
+MaxNtServicePackVersion = 1024 ;่ด้ ฉ SP ็…ฌ้ญฌ่ท
+ThisServicePackVersion    = 1024 ;ๅป•๏ฟฝ
+CatalogFile               = sp4.cat ;้ฝ้ฑ—ๅน็•้…ท่ซๆช๏ฟฝ ็ฑค่ฝๆ€ๅซฃ่กก๏ฟฝ
+MachineType               = ; ่ญ็จฎ็–ๅญๅ๏ฟฝ OS ็…ฌ้ญฌ่ท 98(ๅ้จๅ่ญ้ฎ๏ทๆถท้้ ฉ้ฎ้ชณๅกพ้ ฉ)
 
-[Register.Include] ; ชุดคำสั่ง ส่วน Reg ที่ต้องการใช้
-RegCondition=AutoUpdate.Reg.Install.Condition ;ใช้ส่วนหัวบรรทัดที่ต้องการใช้
+[Register.Include] ; ่พๆก่ๆก๏ฟฝ ๆ๏ฆ Reg ็…ฌ้ๆจฟๅ็–ฐ่๏ฟฝ
+RegCondition=AutoUpdate.Reg.Install.Condition ;่ๆจจ้งๅๆ็–‘็นฉๆฌ็…ฌ้ๆจฟๅ็–ฐ่๏ฟฝ
 RegCondition=Atapi48bit1.Reg.Install.Condition
 RegCondition=Atapi48bit2.Reg.Install.Condition
 RegCondition=AtapiWaitOnBusy.Reg.Install.Condition
 
 ;
-; ตัวอย่าง
+; ่๏บ้”็ถ
 ;
 [AutoUpdate.Reg.Install.Condition]
 
-InstallFromSection = AutoUpdate.Registry.Install ;ระบุ คำสั่งที่ติดตั้ง(แบบกำหนด)
-Operation = CheckInstall,  wuaueng.dll, new\wuaueng.dll (ตรวจสอบการติดตั้ง)
-TargetFromSection = CopyAlways.System32.Files (ระบุคำสั่งคัดลอก)
+InstallFromSection = AutoUpdate.Registry.Install ;่ญ็จฎ ๅคชๅบ้–ซ็…ฌ้ๅญ่ๆ“(ๅป•ๆปฟ่ๅ‘)
+Operation = CheckInstall,  wuaueng.dll, new\wuaueng.dll (่…•๏•ๅบๆปฟ็–ฐ่ ๆ–ฏๆก๏ฟฝ)
+TargetFromSection = CopyAlways.System32.Files (่ญ็จฎๅคชๅบ้–ซๅคฉๆฃ ็ท)
 
 [Atapi48bit1.Reg.Install.Condition]
 
 InstallFromSection = Atapi48bit.Registry.Install
-Operation = CheckFileVer, atapi.sys, ==, 5.0.2195.4529 ; การตรวจสอบเวอร์ชั่นไฟล์
+Operation = CheckFileVer, atapi.sys, ==, 5.0.2195.4529 ; รท็นญ่ …ไบฌ่ฎ้ฒ่ค้ดๆกๅซฃ่กก๏ฟฝ
 TargetFromSection = Drivers.Files
 
 [Atapi48bit2.Reg.Install.Condition]
@@ -48,7 +48,7 @@ Operation = CheckFileVer, atapi.sys, ==, 5.0.2195.5762
 TargetFromSection = Drivers.Files
 
 [AutoUpdate.Registry.Install]
-DelReg=AutoUpdate.DelReg ;ระบุลบ หรือเพิ่ม
+DelReg=AutoUpdate.DelReg ;่ญ็จฎ้ฉ• ไฝธ่ฐน้งๅฉฐ๏ฟฝ
 AddReg=AutoUpdate.AddReg
 
 [Atapi48bit.Registry.Install]
@@ -58,7 +58,7 @@ AddReg=Atapi48bit.AddReg
 AddReg=AtapiWaitOnBusy.AddReg
 
 ;
-; ระบุที่ตั้งไฟลฺ์ แบบ Id
+; ่ญ็จฎ็…ฌ้ๆกๆพ่กก็ตฏ ๅป•๏ฟฝ Id
 ;
 [DirectoryId.Include]
 AddDirId=Hyper.DirId
@@ -80,14 +80,14 @@ AddDirId=MSI20.DirId
 AddDirId=DontRemoveOnUninst.DirId
 
 ;
-; ตัวอย่าง
+; ่๏บ้”็ถ
 ;
 [Hyper.DirId]
 
 DirId = 65605 ; Id
-InstallPathRegistryKey = HKLM,%HyperRegKey% ;ระบุปลายทางของ Reg
+InstallPathRegistryKey = HKLM,%HyperRegKey% ;่ญ็จฎ้…ท็•็…ๅ็ซป Reg
 InstallFromSection = HyperSection
-CopyFlags = SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY ; กำหนดแทนที่อย่างเดียว
+CopyFlags = SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY ; ยฑไฝดๆฐฎๆบฏ็…ฌ้ง–้”็ถ้ฅๆข’๏ฟฝ
 
 [RISAdm.DirId]
 
@@ -169,7 +169,7 @@ CopyFlags = SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
 [SupportTools.DirId]
 
 DirId = 65626
-CustomFunction=SpCustom.dll,GetSupportToolsPathName ; ชุดคำสั่งที่ใช้อยู่ใน DLL จะถูกใช้เป็นพิเศษ
+CustomFunction=SpCustom.dll,GetSupportToolsPathName ; ่พๆก่ๆกๅญๆถท่ๆจฟ่น้ญฌ๏ฟฝ DLL ไฝฌๅ—จ๏ฝ่ท้ฌ่ๆฐ้๏ฟฝ
 InstallFromSection = SupportToolsSection
 CopyFlags = SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
 
@@ -201,12 +201,12 @@ InstallFromSection=DontRemoveOnUninstallSection
 InstallStage=BeforeArchive
 CopyFlags=SP_COPY_FORCE_NEWER
 
-[ProductCatalogsToInstall] ; ติดตั้งไฟล์ความปลอดภับ 
+[ProductCatalogsToInstall] ; ่ ๆ–ฏๆกๆพ่กก้ด—๏ฟ่ฆฌๆ”ชๆฟๆน 
 
 sp4.cat, update\sp4.cat
 nt5prtx.cat
 
-[ProductCatalogsToInstall.IP] ; หากมีหลายเวอร์ชั่น คุณต้องสร้างแยก และระบุโพล์เดอร์ใช้
+[ProductCatalogsToInstall.IP] ; ๅณโ…ๆข–็ฑค่ฝ๏บ้่ก้ ฉ ๅฐบ้ฌๆจฟๅปท้‘็ถๆฌ๏ฟฝ ๆ…้้•ๅต•ๅฌๆตๆฃน้่๏ฟฝ
 
 nt5inf.cat, ip\nt5inf.cat
 
@@ -226,7 +226,7 @@ nt5inf.cat, iw\nt5inf.cat
 
 nt5inf.cat, id\nt5inf.cat
 
-[ProductInstall.ReplaceFilesIfExist] แทนที่ไฟล์ถ้ามีไฟล์อยู่ถ้าไฟล์ใหม่กว่า
+[ProductInstall.ReplaceFilesIfExist] ๅป—ๅฉๆถท้ฝ้ฑ—ๅ’็•ๆนด่กกๅฃ’่น้ ๆฉ้ฝ้ฑ—่’ถ้๏น้ชณ
 
 DelFiles=Drivercab.Delfiles
 DelFiles=ServicePackDeleteFiles
@@ -296,20 +296,20 @@ CopyFiles=WebFolders.Files
 DelFiles=System32.Delfiles
 DelFiles=WebPrinters.Delfiles
 
-[Nec98Section] ;ตัวเลือกสำหรับ PC98 ; ไดร์สำหรับ PC98
+[Nec98Section] ;่๏็บ”็ทๅผไฝธๆน PC98 ; ้ง้ๅผไฝธๆน PC98
 
 CopyFiles=NEC98.Drivers.Files 
 CopyFiles=NEC98.Cache.Files
 
 [ProductInstall.DontDelayUntilReboot]
-;- ไฟล์เหล่านี้จะต้องถูกแทนที่ก่อนรีบูต ไม่ใช่ล่าช้าจนกว่าจะรีบูต
-;- เนื่องจากมีการโหลดก่อนที่จะดำเนินการโค้ดล่าช้าจนถึงรีบูต
+;- ้ฝ้ฑ—้–้ซ“็—ๆทถไฝฌ่็ซปๅ—จ๏นฅๆบฏ็…ฌ้ต้ง–ๅ”ๆขฃๆฃซ ้พ้ญฌ่พ้ซ“็ๆฉ้ฆ๏น้ชณไฝฌ่ญ็จฑ๏ฟฝ
+;- ้้ฏ็ซปไพโ…ๆธ็–ฐ็้ฝโ่ง็…ฌ้–ฎ่ฟก่ฑปๅข้ฃฝ็–ฐๆปฎๆพ้ซ“็ๆฉ้ฆๅฃๅฒ”ๆขฃๆฃซ
 CopyFiles=MustReplace.System32.Files
 CopyFiles=MustReplace.IIS.Files
 CopyFiles=Osldr.Files
 CopyFiles=Drivers.Files
 
-[ProductInstall.CopyFilesAlways] ; เป็นการคัดลอกไฟล์ปกติ แต่ถ้ามีส่วนประกอบของเวอร์ชั่นอื่นที่ไม่ใช้งาน คุณจะต้องกำหนดแยก
+[ProductInstall.CopyFilesAlways] ; ้ฌ่รท็“ฃๆฌๆ”ชโฉ่กกๅขโ–ณ๏ฟฝ ๅป้ ๆฉ่ฝ…ๆ๏ฆ้…ต่ค่ฎๅๆ๏บ้่ก้ ฉ้ฐ้ ฉ็…ฌ้ณผ้่ๆ“็— ๅฐบ้ฃ่ฟฎๆจฟๅ่ๅ‘ๆฌ๏ฟฝ
 CopyFiles=CopyAlways.Templates.Files
 CopyFiles=CopyAlways.System32.Files
 CopyFiles=CopyAlways.Drivers.Files
@@ -388,7 +388,7 @@ CopyFiles=AutoUpdate.System32.Files
 CopyFiles=AutoUpdate.Help.Files
 CopyFiles=AutoUpdate.Adm.Files
 
-[ProductInstall.DataCenterFiles] คำสั่งติดตั้งไฟล์สำหรับแต่ล่ะเวอร์ชั่น
+[ProductInstall.DataCenterFiles] ๅคชๅบ้–ซ่ ๆ–ฏๆกๆพ่กกๅฃ–่่ญ็ญต่”้ซ“ๅ“๏บ้่ก้ ฉ
 
 CopyFiles=DataCenter.Inf.Files
 CopyFiles=DataCenter.Cache.Files
@@ -430,28 +430,28 @@ CopyFiles=Professional.Templates.Files
 DelReg=Product.Del.Reg.Professional
 AddReg=Product.Add.Reg.Professional,ResetAU.AddReg
 
-[ProductInstall.UniprocessorFiles] ; คำสั่งติดตั้งไฟล์สำหรับ CPU 1 Core
+[ProductInstall.UniprocessorFiles] ; ๅคชๅบ้–ซ่ ๆ–ฏๆกๆพ่กกๅฃ–่่ญ๏ฟฝ CPU 1 Core
 
 CopyFiles=Uniprocessor.Kernel.Files
 
-[ProductInstall.MultiprocessorFiles] ; คำสั่งติดตั้งไฟล์สำหรับ CPU หลาย Core
+[ProductInstall.MultiprocessorFiles] ; ๅคชๅบ้–ซ่ ๆ–ฏๆกๆพ่กกๅฃ–่่ญ๏ฟฝ CPU ไพ็• Core
 
 CopyFiles=Multiprocessor.Kernel.Files
  
-[ProductInstall.GlobalRegistryChanges.Install] ; คำสั่งเพิ่ม Reg เปลี่ยนแปลงหรือเพิ่ม 
+[ProductInstall.GlobalRegistryChanges.Install] ; ๅคชๅบ้–ซ้งๅฉฐ๏ฟฝ Reg ้ฌ็บ“้ค”ๅซ—้…ทๅผ่ญไพฒๆฐ้ค‘ 
 
 AddReg=Product.Add.Reg, Product.RunOnce
 DelReg=Product.Del.Reg
 DelReg=IE.DelReg
 
-[ProductInstall.GlobalRegistryChanges.ReInstall] ;คำสั่งนี้หากคุณลบ patch และคุณจะต้องเพิ่มอีกบรรทัด
+[ProductInstall.GlobalRegistryChanges.ReInstall] ;ๅคชๅบ้–ซๅกนๆฉ็ทๅฐบๅ…๏ฟฝ patch ๆ…่ณๅ ปไฝฌ่็ซป้งๅฉฐ่ถจๆธ็–‘็นฉๆฌ
 
 AddReg=Product.Add.Reg, Product.RunOnce
 DelReg=Product.Del.Reg
 
 ;
-; ระบบ มีการเข้ารหัส 2 เวอร์ชั่น มาตั้งแต่สมัย Windows NT4.0 ซึ่ง เป็นส่วนประกอบ rsaenhs.dll มันเป็นความลับของ Microsoft เท่านั่น และทางรัฐบาลไม่เปิดเผย 
-; จะถูกใช้ในอเมริกา/แคนนาดา
+; ่ญ็– ่ฝ…รท่นด๏ฝ็–ฐๅฒ๏ฟฝ 2 ้ฒ่ค้ดๆก๏ฟฝ ่ฝ่ๆ“ๅป้ง”่น๏ฟฝ Windows NT4.0 ๅบ ้–ซ ้ฌ่ๆ๏ฆ้…ต่ค่ฎ rsaenhs.dll ่นๅซฉ้ค้ฆฑ๏ฟ่ฑๆนๅ๏ฟฝ Microsoft ้ฎ้ชณๅกพ้ ฉ ๆ…้ฑ็ถ่ญๅ•็–ป้พ้ญฐ้–ฉๆฏฏๆ’ข 
+; ไฝฌๅ—จ๏ฝ่ท่“ไพฒ่ฌๅ”๏ฟฝ/ๅถ€ๅณ็’๏ฟฝ
 
 [ProductInstall.56BitFiles]
 
@@ -465,11 +465,11 @@ CopyFiles=System32.128bit.Files
 CopyFiles=Drivers.128bit.Files
 CopyFiles=Cache.128bit.Files
 
-[ServicesToStopAndStart] ; กำหนดบริการของ OS ที่ต้องการหยุดหรือเริ่ม
+[ServicesToStopAndStart] ; ยฑไฝดๆฏ่ญรท็’ฝ็ซป OS ็…ฌ้ๆจฟๅ็–ฐไพๅฅกไฝธ่ฐน้ฑๅฉฐ๏ฟฝ
 
 
 ;
-; ส่วนประกอบสำหรับ OS เมื่อคุณเขียน 
+; ๆ๏ฆ้…ต่ค่ฎๅผไฝธๆน OS ้ก้ฏ็ง…ๅ ป้ๆข’๏ฟฝ 
 ;
 
 [ProxySection] 
@@ -592,7 +592,7 @@ AddReg=DataAccess.AddReg
 AddReg=OE.AddReg
 DelReg=OE.DelReg
 
-[DontRemoveOnUninstallSection] ; คำสั่งห้ามส่วนที่ลบ SP Update ออกไปแล้ว
+[DontRemoveOnUninstallSection] ; ๅคชๅบ้–ซๅ‘ฏ็•ๆ๏ฆ็…ฌ้ค•๏ฟฝ SP Update ่ฟโฉ้ —้ซ”๏ฟฝ
 
 CopyFiles=DontRemoveOnUninstall.Files
 
@@ -603,7 +603,7 @@ spdwnw2k.exe,update\spdwnw2k.exe
 [ServicePackFilesAlways]
 
 
-[ServicePackFilesAlways.Files] ;คำสั่งคัดลอกปกติ
+[ServicePackFilesAlways.Files] ;ๅคชๅบ้–ซๅคฉๆฃ ็ท่ชช่ 
 
 achg.htr
 aexp.htr
@@ -633,7 +633,7 @@ usbhub20.sys
 usbport.sys
 xenrx86.dll
 
-[ServicePackDirectoriesToUpdate] ; คำสั่งอัพเดตจากโพล์เดอร์ Update หากหลายเวอร์ชั่น ต้องแยก
+[ServicePackDirectoriesToUpdate] ; ๅคชๅบ้–ซ่ฟ•ๆ“’ๆ–ฏไพ๏นฆๅฌๆตๆฃน้ Update ๅณ๏น็ฑค่ฝ๏บ้่ก้ ฉ ่็ซปๆฌ๏ฟฝ
 
 compdata
 uniproc
@@ -652,7 +652,7 @@ win9xupg
 win9xupg\jpnime
 
 ;
-; ตัวอย่าง
+; ่๏บ้”็ถ
 ;
 [ServicePackDirectoriesToInsert.IP]
 
@@ -689,11 +689,11 @@ compdata,compdata
 [ServicePackDirectoriesToInsert.MW]
 
 ;
-; คำสั่งเฉพาะระบบ Windows 2000
+; ๅคชๅบ้–ซ้”ๆ้้•๏ฟฝ Windows 2000
 ;
 
 
-[ServicePackJPNFiles] ; ใช้สำหรับ Microsoft IME เมื่อหลายภาษาคุณจำเป็นเขียนแยก
+[ServicePackJPNFiles] ; ่ๆจจ่่ญ๏ฟฝ Microsoft IME ้ก้ฏ่ฑ–็ฑค่็–ถ็บๅ ปไพ้ฌ่้ๆข’ๅซ—็’
 
 imejp.ime,lang\jpn\imejp.ime
 imejpdct.dll,lang\jpn\imejpdct.dll
@@ -735,7 +735,7 @@ imekr98u.ime,lang\kor\imekr98u.ime
 korwbrkr.dll,lang\kor\korwbrkr.dll
 korwbrkr.lex,lang\kor\korwbrkr.lex
 
-[ProcessesToRun] ; เรียกใช้กระบวนการ
+[ProcessesToRun] ; ้ฑๆข’๏ฝ่ท๏ฟฃ้•๏ฆรท๏ฟฝ
 
 "sptsupd.exe"
 "?%systemroot%\system32\sp4iis.exe -l"
@@ -753,7 +753,7 @@ ftpqfe.exe
 "%systemroot%\system32\perfvd.exe %systemroot%\system32\iisperf.txt"
 "%systemroot%\system32\spupdsvc.exe /install ""Enables Windows 2000 Service Pack Installer to complete its scheduled post-reboot tasks"""
 
-[ProcessesToRunBeforeUninstall] ; กระบวนการเรียกใช้ก่อนถอนการติดตั้ง
+[ProcessesToRunBeforeUninstall] ; ๏ฟฃ้•๏ฆรท่นด่ญ็’่ๆฟ้ง–ๅ่งรท็นญๅญ่ๆ“
 
 "%systemroot%\system32\wzcsetup.exe /u /P"
 "sp4iis.exe -u"
@@ -761,24 +761,24 @@ ftpqfe.exe
 "%systemroot%\system32\perfvd.exe -p %sourcePath% %systemroot%\system32\iisperf.txt"
 "%systemroot%\system32\spupdsvc.exe" /delete
 
-[ProcessesToRunAfterUninstall] ; กระบวนหลังจากถอนการติดตั้ง
+[ProcessesToRunAfterUninstall] ; ๏ฟฃ้•๏ฆไพๆไพโ–ฒ่งรท็นญๅญ่ๆ“
 
 "%systemroot%\system32\spdwnw2k.exe"
 
-[ProcessesToRunBeforeArchive] กระบวนการทำงานก่อนเก็บไฟล์ถาวร
+[ProcessesToRunBeforeArchive] ๏ฟฃ้•๏ฆรท็นฉ่็—โ่ง้่ฅ้ฝ้ฑ—ๅ๏ฐ
 
 ?#MSI20Install,@MSI20Stage,"msiinst.exe /delayrebootq"
 
-[ProcessesToRunAfterReboot] ;  กระบวนการเรียกใช้หลังจากรีบูต
+[ProcessesToRunAfterReboot] ;  ๏ฟฃ้•๏ฆรท่นด่ญ็’่ๆฉ็ซๅคพ็ท่ญ็จฑ๏ฟฝ
 
 "%systemroot%\system32\secedit.exe /configure /cfg %systemroot%\inf\spsecupd.inf /db %systemroot%\security\templates\spsecupd.sdb /log %systemroot%\security\logs\spsecupd.log"
 "%systemroot%\system32\spupdw2k.exe"
 
-[DirectoriesToCleanUp] ; การล้างข้อมูลไดเรกทอรี
+[DirectoriesToCleanUp] ; รท่—ทๆฉๅๆจฟ้้ฅๆฏฏ็บๆบด่ญ
 
 Directory,"%windir%\system32\msiinst.tmp"
 
-[Save.Reg.For.Uninstall] ; REG หลังจากถอนติดตั้ง คุณต้องทำและรวบรวมเอง
+[Save.Reg.For.Uninstall] ; REG ไพๆไพโ–ฒ่ง่ ๆ–ฏๆก๏ฟฝ ๅฐบ้ฌๆจฟๅญ่ฒค็“่ …็–‘๏ฎ้–๏ฟฝ
 
 HKLM,SOFTWARE\Microsoft\Windows\CurrentVersion\Setup,ServicePackCachePath
 HKLM,SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{5D0930A0-%WSEDIR%-433A-8BB9-602665550DD0},"SystemComponent"
@@ -983,30 +983,54 @@ HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","2898
 HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","395851621189816531110379067141723591477" 
 HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","4023732848122949273434246725693853128194" 
 HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","2865606051144020415419428416321005291199" 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","1300150504237118352022508450431716001617" 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","10327294641279953086423754554353497901" 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","288330661835808032614046009663641633959" 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","403414999869680796425528578421940582873" 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","9008975852863843330554203185374748680" 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","84793230642662307041768804113921455633" 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","907533488391932656724484021002452558847" 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","321800793911466616843662894221661439274" 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","32425658534157362743180443112088927653" 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","1681811558580181212653092081096709158" 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","193270934114678981108414889382529653238" 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","23850131461493694252217607336110890471" 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","4175303068209427793421181399613398430623" 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","121747658030060930653627356598662883439" 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","184386603817012654132725927363952211993" 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","305164551123887270335200532512648622814" 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","1695162257105317991418963002893611323088" 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","251945552039927526053214833904085138773" 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","1320227025661828552359386029139370604" 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","18107569792517748319178922141548780112" 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","360270217625552498383688487471377259537" 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","670728368377408039811604281142275277035" 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","247320553511976744981987704546189165805" 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","4277311818217503759213705018292682536816"
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","1300150504237118352022508450431716001617" 
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","10327294641279953086423754554353497901" 
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","288330661835808032614046009663641633959" 
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","403414999869680796425528578421940582873" 
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","9008975852863843330554203185374748680" 
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","84793230642662307041768804113921455633" 
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","907533488391932656724484021002452558847" 
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","321800793911466616843662894221661439274" 
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","32425658534157362743180443112088927653" 
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","1681811558580181212653092081096709158" 
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","193270934114678981108414889382529653238" 
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","23850131461493694252217607336110890471" 
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","4175303068209427793421181399613398430623" 
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","121747658030060930653627356598662883439" 
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","184386603817012654132725927363952211993" 
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","305164551123887270335200532512648622814" 
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","1695162257105317991418963002893611323088" 
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","251945552039927526053214833904085138773" 
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","1320227025661828552359386029139370604" 
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","18107569792517748319178922141548780112" 
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","360270217625552498383688487471377259537" 
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","670728368377408039811604281142275277035" 
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","247320553511976744981987704546189165805" 
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","4277311818217503759213705018292682536816"
+
 HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\{80CB7887-20DE-11D2-8D5C-00C04FC29D45}", "Compatibility Flags"
 HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\{43F8F289-7A20-11D0-8F06-00C04FC295E1}", "Compatibility Flags"
 HKLM,"SYSTEM\CurrentControlSet\Services\WZCSSVC"
@@ -1062,7 +1086,7 @@ HKCR,"Interface\{C28C2D95-B7DE-11D2-A421-00C04F79FE8E}\TypeLib"
 HKCR,"TypeLib\{5B9169C0-DB65-42AA-A38A-0726846AAEB3}"
 HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\{43F8F289-7A20-11D0-8F06-00C04FC295E1}", "Compatibility Flags"
 
-[Product.Del.Reg] ; ลบ Reg
+[Product.Del.Reg] ; ้ฉ• Reg
 
 HKLM,SOFTWARE\Microsoft\Updates\Windows 2000\SP0
 HKLM,SOFTWARE\Microsoft\Updates\Windows 2000\SP1
@@ -1085,14 +1109,14 @@ HKCR,"CLSID\{D7D6E082-DCCD-11d0-AA4B-0060970DEBAE}\implemented categories"
 HKCR,"CLSID\{D7D6E084-DCCD-11d0-AA4B-0060970DEBAE}\implemented categories"
 HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Print\Providers\LanMan Print Services\Servers"
 HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\appcompatibility\setup.exe","67"
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Windows 2000 ผญบ๑ฝบ ฦั"
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Windows 2000 ๆฎ็ถ ่ถ ๏ก"
 HKCR,"CLSID\{80CB7887-20DE-11D2-8D5C-00C04FC29D45}\Implemented Categories\{7DD95801-9882-11CF-9FA9-00AA006C42C4}"
 HKCR,"CLSID\{80CB7887-20DE-11D2-8D5C-00C04FC29D45}\InprocServer32"
 HKCR,"CLSID\{80CB7887-20DE-11D2-8D5C-00C04FC29D45}\ProgID"
 HKCR,"CLSID\{80CB7887-20DE-11D2-8D5C-00C04FC29D45}\Programmable"
 HKCR,"CLSID\{80CB7887-20DE-11D2-8D5C-00C04FC29D45}\VersionIndependentProgID"
 
-[Product.Add.Reg] เพิ้ม Reg หากมีส่วนประกอบอื่นของ OS คุณต้องเขียนแยก และรวมเอง
+[Product.Add.Reg] ้งๅฉฉ๏ฟฝ Reg ๅณโ…ๆข้งๅ่ญ๏น ็ฟ้ฏ้ฃพ็ซป OS ๅฐบ้ฌๆจฟๆ๏ผง็น’ๆฌ๏ฟฝ ๆ…้๏ฎ้–๏ฟฝ
 
 HKLM,SOFTWARE\Classes\Msi.Package\shell\Open\command,,,"""%11%\msiexec.exe"" /i ""%1"" %*"
 HKLM,SOFTWARE\Classes\Msi.Package\shell\Repair\command,,,"""%11%\msiexec.exe"" /f ""%1"" %*"
@@ -1338,30 +1362,54 @@ HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","2898
 HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","395851621189816531110379067141723591477",0x00010001,0x0000673a
 HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","4023732848122949273434246725693853128194",0x00010001,0x00007141
 HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","2865606051144020415419428416321005291199",0x00010001,0x00005542
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","1300150504237118352022508450431716001617",0x00010001,0x00002033
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","10327294641279953086423754554353497901",0x00010001,0x00002018
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","288330661835808032614046009663641633959",0x00010001,0x0000201f
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","403414999869680796425528578421940582873",0x00010001,0x00002018
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","9008975852863843330554203185374748680",0x00010001,0x0000201b
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","84793230642662307041768804113921455633",0x00010001,0x00002092
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","907533488391932656724484021002452558847",0x00010001,0x00002053
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","321800793911466616843662894221661439274",0x00010001,0x0000200e
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","32425658534157362743180443112088927653",0x00010001,0x00002017
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","1681811558580181212653092081096709158",0x00010001,0x0000201c
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","193270934114678981108414889382529653238",0x00010001,0x00002022
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","23850131461493694252217607336110890471",0x00010001,0x00002049
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","4175303068209427793421181399613398430623",0x00010001,0x00002026
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","121747658030060930653627356598662883439",0x00010001,0x00002023
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","184386603817012654132725927363952211993",0x00010001,0x00002060
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","305164551123887270335200532512648622814",0x00010001,0x00002037
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","1695162257105317991418963002893611323088",0x00010001,0x0000201e
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","251945552039927526053214833904085138773",0x00010001,0x00002013
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","1320227025661828552359386029139370604",0x00010001,0x00002016
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","18107569792517748319178922141548780112",0x00010001,0x0000201f
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","360270217625552498383688487471377259537",0x00010001,0x00002047
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","670728368377408039811604281142275277035",0x00010001,0x0000201e
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","247320553511976744981987704546189165805",0x00010001,0x0000201a
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","4277311818217503759213705018292682536816",0x00010001,0x00002015
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","1300150504237118352022508450431716001617",0x00010001,0x00002033
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","10327294641279953086423754554353497901",0x00010001,0x00002018
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","288330661835808032614046009663641633959",0x00010001,0x0000201f
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","403414999869680796425528578421940582873",0x00010001,0x00002018
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","9008975852863843330554203185374748680",0x00010001,0x0000201b
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","84793230642662307041768804113921455633",0x00010001,0x00002092
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","907533488391932656724484021002452558847",0x00010001,0x00002053
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","321800793911466616843662894221661439274",0x00010001,0x0000200e
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","32425658534157362743180443112088927653",0x00010001,0x00002017
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","1681811558580181212653092081096709158",0x00010001,0x0000201c
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","193270934114678981108414889382529653238",0x00010001,0x00002022
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","23850131461493694252217607336110890471",0x00010001,0x00002049
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","4175303068209427793421181399613398430623",0x00010001,0x00002026
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","121747658030060930653627356598662883439",0x00010001,0x00002023
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","184386603817012654132725927363952211993",0x00010001,0x00002060
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","305164551123887270335200532512648622814",0x00010001,0x00002037
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","1695162257105317991418963002893611323088",0x00010001,0x0000201e
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","251945552039927526053214833904085138773",0x00010001,0x00002013
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","1320227025661828552359386029139370604",0x00010001,0x00002016
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","18107569792517748319178922141548780112",0x00010001,0x0000201f
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","360270217625552498383688487471377259537",0x00010001,0x00002047
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","670728368377408039811604281142275277035",0x00010001,0x0000201e
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","247320553511976744981987704546189165805",0x00010001,0x0000201a
+
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TemplateRegistry","4277311818217503759213705018292682536816",0x00010001,0x00002015
+
 HKLM,"Software\Clients\Media\Windows Media Player",,,"%DESC_WMP%"
 HKLM,"Software\Clients\Media\Windows Media Player\InstallInfo","IconsVisible",0x00010003,0x00000001
 HKLM,"Software\Clients\Media\Windows Media Player\InstallInfo",ReinstallCommand,,"%11%\setup\wmpocm.exe /SetWMPAsDefault"
@@ -1870,7 +1918,7 @@ HKLM,SYSTEM\CurrentControlSet\Services\atapi\Parameters,"WaitOnBusyOnPowerUp",0x
 [Product.RunOnce]
 
 
-[ServicePackFiles.IP] ;คำสั่งคัดลอกปกติ แต่ปกติ และตามด้วยชื่อไฟล์
+[ServicePackFiles.IP] ;ๅคชๅบ้–ซๅคฉๆฃ ็ท่ชช่  ๅป้  โ–ณ๏ฟฝ ๆ…่ฟฎ็•ๆนง๏ฏ่ฅ้ง–้ฝ้ฑ—
 CopyFiles=ServicePackFiles.IP.Files
 CopyFiles=ServicePackFiles.CommonFiles
 CopyFiles=ServicePackJPNFiles
@@ -2160,7 +2208,7 @@ basicsv.inf, ip\basicsv.inf
 hptxnt5.sys, ip\hptxnt5.sys
 e100bnt5.sys, ip\e100bnt5.sys
 
-[ServicePackFiles.CommonFiles] ;ไฟล์ SP หลัก
+[ServicePackFiles.CommonFiles] ;้ฝ้ฑ— SP ไพๆ
 ntldr
 mf.sys
 hh.exe
@@ -3375,7 +3423,7 @@ cipher.exe
 ftpsapi2.dll
 axperf.ini
 
-[SourceDisksFiles] ;คำสั่งที่อยู่ไฟล์ที่ใน patch และต้องคัดลอก อย่าผิดนิดเดียว
+[SourceDisksFiles] ;ๅคชๅบ้–ซ็…ฌ้ง–่น้ณผ่กก้ผ’ๆถท่“ patch ๆ…่ฟฎๆจฟๅๆฌๆ”ช๏ฟฝ ่้ชณๆจๆถๅญ้ฅๆข’๏ฟฝ
 
 new\sp4iis.exe=1
 aexp2b.htr=1
@@ -3402,7 +3450,7 @@ anot.htr=1
 achg.htr=1
 aexp.htr=1
 
-[DestinationDirs] ; ที่ตั้งของไฟล์ คุณจะต้องระบุเป็นตัวเลขเท่านั่น หากเส้นทางถูกต้อง แต่อยู่ในโพล์เดอร์ จะต้องใส่ "ชื่อโพล์เดอร์"
+[DestinationDirs] ; ็…ฌ้ๆกๅ็ซป้ฝ้ฑ— ๅฐบ้ฃ่ฟฎๆจฟๅฒ”้•ๅต‘้คๅฑๆ้ฃ๏ผฒ็‘็—ๆก๏ฟฝ ๅณ๏นคๆๅฉ็ถๅ—จโ–ณๆจฟ๏ฟฝ ๅป้ง–่น้ญฌๅซ–ๅฌๆตๆฃน้ ไฝฌ่็ซป่’๏ฟฝ "่ฅ้ง–็…้ฑ—้ฅ่ค๏ฟฝ"
 SystemRoot.Files=10             ; %windir% (replace if exist)
 CopyAlways.Templates.Files=10,security\templates
 System.Files=10,"System"        ; %windir%
@@ -3605,7 +3653,7 @@ CopyAlways.IE.DE.Files=11,ie_de          ; %windir%\system32\ie_de (copy even if
 
 
 ;
-; เป็นคำสั่งคัดลอกไฟล์ แต่คุณต้องเขียนตามชื่อ ในส่วน DestinationDirs
+; ้ฌ่ๅคชๅบ้–ซๅคฉๆฃ ็ท้ฝ้ฑ— ๅป้ดๅ ป่็ซป้ๆข’ๅฑ็•่ฅ้ง– ่“ๆ๏ฆ DestinationDirs
 ;
 [AutoUpdate.System32.Files]
 
@@ -9005,26 +9053,26 @@ xenroll.dll=1
 xenrx86.dll=1
 xrxnui.dll=1
 
-[UninstallSections.PRE.SP3] ; คำสั่งตัวเลือกในการถอนเพิ่มเติม 
+[UninstallSections.PRE.SP3] ; ๅคชๅบ้–ซ่๏็บ”็ท่“รท็นน่ง้งๅฉฐ้่ ๏ฟฝ 
 
 DestinationDirs,DestinationDirs.Uninstall.PRE.SP3
 RestoreFiles,RestoreFiles.Uninstall.PRE.SP3
 AllUsersStartMenu.DelFiles,AllUsersStartMenu.DelFiles.Uninstall.PRE.SP3
 
-[UninstallSections] เหมือนอันบน
+[UninstallSections] ้–้ฟ่ง่ฟ•ๅ๏ฟฝ
 
 GlobalRegistryChanges, GlobalRegistryChanges.Uninstall
 Del.Reg, Del.Reg.Uninstall
 
-[DestinationDirs.Uninstall.PRE.SP3] ระบุที่ตั้งในการถอนติดตั้งไฟล์
+[DestinationDirs.Uninstall.PRE.SP3] ่ญ็จฎ็…ฌ้ๆกๆผ้ฃฝ็–ฐๅฏๅฑๅญ่ๆ“้ฝ้ฑ—
 
 AllUsersStartMenu.DelFiles = 16406       ; %allusersprofile%\Start Menu
 
-[RestoreFiles.Uninstall.PRE.SP3] คืนค่าไฟล์
+[RestoreFiles.Uninstall.PRE.SP3] ๅฐค้ฆฑ้ชณ้ฝ้ฑ—
 
 DelFiles = AllUsersStartMenu.DelFiles
 
-[AllUsersStartMenu.DelFiles.Uninstall.PRE.SP3] คำสั่งลบ Shortcut
+[AllUsersStartMenu.DelFiles.Uninstall.PRE.SP3] ๅคชๅบ้–ซ้ฉ• Shortcut
 
 "%CONFIGURE_PROGRAMS%.lnk"
 
@@ -9036,7 +9084,7 @@ DelReg=Del.Reg
 
 HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Print\Providers\LanMan Print Services\Servers"
 
-[Strings] ;สตริงที่คุณต้องระบุและจำเป็น
+[Strings] ;ๅฆ—่ญๅญๆถทๅฐบ้ฌๆจฟๅฒ”้•ๅต็“ไพ้ฌ่
 
 CMAKRegkey=SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Cmak.exe
 ProxyRegKey=SYSTEM\CurrentControlSet\Services\WSPSrv\Parameters
@@ -9045,36 +9093,36 @@ HyperRegKey=SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\hypertrm.exe
 EudcRegKey=Software\Microsoft\Windows\CurrentVersion\App Paths\eudcedit.exe
 AdmtRegKey=SOFTWARE\Mission Critical Software\DomainAdmin
 TsclientRegKey=SOFTWARE\Classes\conman.exe\DefaultIcon
-BUILDTIMESTAMP       = ; กำหนดวันที่สร้างไฟล์เสร็จ
-LangTypeValue           = 17 ; รหัสภาษา
+BUILDTIMESTAMP       = ; ยฑไฝดๆฃ—ๆค็…ฌ้ง”้‘็ถ้ฝ้ฑ—้้ฎ๏ฟฝ
+LangTypeValue           = 17 ; ่ฅ ๆ—ๆช ๅฅฟ
 WSEDIR                  = "1041" 
 TSCLIENTDIR             = "Terminal Services Client"
-PORTUGAL                = "|gK"
-FALKLANDS               = "tH[N“h”“"
-USER_NAME               = "[U[–ผ:"
-PASSWORD                = "pX[h:"
-DOMAIN                  = "hC“:"
-CREDENTIALS             = "_Ci~bN DNS “o^ฬ‘i๎•๑:"
-SP_TITLE                = "Windows 2000 Service Pack 4" ;ชื่อไตเติ้ลที่คุณต้องใช้
-SP_SHORT_TITLE          = "Service Pack 4" ; ชื่อไตเติ้ลสั้น
-SP_KB_NUMBER            = "Q327194" ; ระบุชื่อย่อ
-ServicePackSourceFiles  = "Windows 2000 Service Pack 4 \[X t@C"
-WUCUN_TS_JOBFILE        = "Windows d—vศXVฬ’ส’m.job"
+PORTUGAL                = "๏€ฎ๏ฟฝ๏€๎ฟฝ๏ฟฝ"
+FALKLANDS               = "๏€ฆ๎ฟบ๎ป“๏€€๏ฟฝ๏ฟฝ๏€๏ฟฝ๏ฟฝ"
+USER_NAME               = "๏ฟฝ๎ป“๏€๎ป“๎ก“:"
+PASSWORD                = "๏€ข๏€๏ฟฝ๎ป“๏€:"
+DOMAIN                  = "๏€๏ฟฝ๎ฟต๏ฟฝ:"
+CREDENTIALS             = "๏€‘๎ฟต๏€๏€ฐ๏€”๏€€ DNS ๎‘๎ฅ‘๎พฟ๏ฟฝ๏‘ฆ๎บ๎ซ:"
+SP_TITLE                = "Windows 2000 Service Pack 4" ;่ฅ้ง–้พ้ๅฉฉ้ๆถทๅฐบ้ฌๆจฟๆผ่ท
+SP_SHORT_TITLE          = "Service Pack 4" ; ่ฅ้ง–้พ้ๅฉฉๆ€ๆก๏ฟฝ
+SP_KB_NUMBER            = "Q327194" ; ่ญ็จฎ่ฅ้ง–้”๏ฟฝ
+ServicePackSourceFiles  = "Windows 2000 Service Pack 4 ๏€๎ป“๏€ ๏€ฆ๎ฟฒ๎ฟต๏ฟฝ"
+WUCUN_TS_JOBFILE        = "Windows ๎’๎ฃ๎พป๏ฌ๎‘ก๎พฟ๎—ญ๎–ฒ.job"
 BITS_DISPLAY_NAME       = "Background Intelligent Transfer Service"
-BITS_DESCRIPTION        = "ACh๓‘ิฬlbg[N‘ัๆ•๐g—pตฤobNOE“hลt@C๐“]‘—ตÜทBT[rXช–ณ๘ษศมฤข้๊AWindows Update โ MSN Explorer ศวฬ BITS ษห‘ถตฤข้ทืฤฬ@”\อAฉ“ฎ“IษvO€โปฬูฉฬ๎•๑๐_E“[hลซศญศ่ÜทB"
+BITS_DESCRIPTION        = "๎ฟณ๎ฟต๏€๏ฟฝ๎ฟ๎•๎พฟ๏€๏€”๏€๏ฟฝ๎ป“๏€€๎•—๏๏ฟฝ๎ฟฃ๎ธ๎ฃ๎พจ๎พท๏€ก๏€”๏€€๏€๏ฟฝ๎ฟท๏ฟฝ๏€๎พธ๏€ฆ๎ฟฒ๎ฟต๏ฟฝ๎ฟฃ๎ฟ๏ฟฝ๎พจ๎ฟ๎พช๎บบ๏€๎ป“๏€ค๏€๎พ๎ก๏๎พผ๎พป๎พด๎พท๎พ•๎ฟ๎ถ๏ฟฝ๎บนWindows Update ๎ฟ• MSN Explorer ๎พป๎พบ๎พฟ BITS ๎พผ๏ฌ๎”ผ๎พจ๎พท๎พ•๎ฟ๎พช๎ฟ๎พท๎พฟ๏“๎๎ฟ€๎บน๎๎ฎ๎ซ๎พผ๏€จ๏ฟฝ๏€๏ฟฝ๏ฟฝ๎ฟ•๎พฎ๎พฟ๎ฟ๎พ๎พฟ๎บ๎ซ๎ฟฃ๏€‘๎ฟท๏ฟฝ๏ฟฝ๎ป“๏€๎พธ๎พ๎พป๎พ ๎พป๎ฟ๎ฟ๎พช๎บบ"
 BITS_CLASS_NAME         = "Background Intelligent Transfer Control Class 1.0"
 LEGACY_BITS_CLASS_NAME  = "Legacy Background Intelligent Transfer Control Class"
-AU_DESCRIPTION          = "d—vศ Windows Update ฬ_E“[hฦC“Xg[๐—L๘ษตÜทBฑฬT[rX๐–ณ๘ษตฤข้๊อAWindows Update ฬ Web TCgลIy[eB“O VXe€๐่“ฎลXVลซÜทB"
+AU_DESCRIPTION          = "๎’๎ฃ๎พป Windows Update ๎พฟ๏€‘๎ฟท๏ฟฝ๏ฟฝ๎ป“๏€๎พน๎ฟต๏ฟฝ๏€๏€๎ป“๏ฟฝ๎ฟฃ๎ขข๏๎พผ๎พจ๎ฟ๎พช๎บบ๎พค๎พฟ๏€๎ป“๏€ค๏€๎ฟฃ๎ก๏๎พผ๎พจ๎พท๎พ•๎ฟ๎ถ๏ฟฝ๎ฟ€๎บนWindows Update ๎พฟ Web ๏€๎ฟต๏€๎พธ๎ฟป๏€ซ๏ฟฝ๎ป“๏€—๎ฟด๏ฟฝ๏€ ๏€๏€๏€—๏ฟฝ๎ฟฃ๎—๎ฎ๎พธ๏ฌ๎‘ก๎พธ๎พ๎ฟ๎พช๎บบ"
 AU_DISPLAY_NAME         = "Automatic Updates"
-CONFIGURE_PROGRAMS      = "vO€ฬANZXฦ๙’่ฬÝ’่"
+CONFIGURE_PROGRAMS      = "๏€จ๏ฟฝ๏€๏ฟฝ๏ฟฝ๎พฟ๎ฟณ๏€€๏€๏€๎พน๏“”๎๎พฟ๎“๎"
 DESC_IE="Internet Explorer"
-DESC_IEAccess="Internet Explorer ANZX"
-DESC_OEAccess="Outlook Express ANZX"
+DESC_IEAccess="Internet Explorer ๎ฟณ๏€€๏€๏€"
+DESC_OEAccess="Outlook Express ๎ฟณ๏€€๏€๏€"
 DESC_WMP="Windows Media Player"
-PEAP-DispName               = "•Û์ณ๊ฝ EAP (PEAP)"
-EAPMSCHAP-DispName          = "ZL…eBล•Û์ณ๊ฝpX[h (EAP-MSCHAP v2)"
+PEAP-DispName               = "๎•๏๎พฆ๎ฟ๎พฐ EAP (PEAP)"
+EAPMSCHAP-DispName          = "๏€๎ฟพ๏ฟฝ๏ฟฝ๏€—๎ฟด๎พธ๎•๏๎พฆ๎ฟ๎พฐ๏€ข๏€๏ฟฝ๎ป“๏€ (EAP-MSCHAP v2)"
 
-[Configuration] ;การตั้งค่าของตัวติดตั้ง
+[Configuration] ;รท็นญๆกๅ้ชณๅๅญๆ่ ๆ–ฏๆก๏ฟฝ
 InstallationType        = Update
 UnInstallDirName        = $NtServicePackUninstall$
 InstallLogFileName      = svcpack.log
@@ -9085,5 +9133,5 @@ EventLogKeyName         = NtServicePack
 EventLogDllName         = spmsg.dll
 
 ;
-; ใน XP ขึ้นไป จะมีไฟล์ เฉพาะสาขาอัปเตดของตัวเองขิ้นไปโดยมี updatebr.inf เป็นกำหนดสาขา และ branches.inf
+; ่“ XP ๏ผจๆฝ้ ไฝฌ่ฝ…้ฝ้ฑ— ้”ๆๅ€็ถ็ๆ้ๆฃ็ซป่๏็ซป๏ผฆๆฝ้ๆผบ่๏ฟฝ updatebr.inf ้ฌ่ยฑไฝดๆฃต็ถ๏ฟฝ ๆ…๏ฟฝ branches.inf
 ;
