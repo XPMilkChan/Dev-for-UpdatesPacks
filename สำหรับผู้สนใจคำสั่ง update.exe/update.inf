@@ -17,7 +17,7 @@ MinNtServicePackVersion   = 0
 MaxNtServicePackVersion = 1024 ;รุ่น SP ที่ใช้
 ThisServicePackVersion    = 1024 ;แบน
 CatalogFile               = sp4.cat ;ไฟล์ความปลอดภัย ลายเซ็นไฟล์
-MachineType               = ; ระบุชนิดของ OS ที่ใช้ 98(คอมในประเทศญี่ปุ่นเท่านั่น)
+MachineType               = ; ระบุชนิดของ OS ที่ใช้ 98(คอมในประเทศญี่ปุ่นเท่านั่น) 64 สำหรับ เครื่องที่ใช้งาน x64/ia64
 
 [Register.Include] ; ชุดคำสั่ง ส่วน Reg ที่ต้องการใช้
 RegCondition=AutoUpdate.Reg.Install.Condition ;ใช้ส่วนหัวบรรทัดที่ต้องการใช้
