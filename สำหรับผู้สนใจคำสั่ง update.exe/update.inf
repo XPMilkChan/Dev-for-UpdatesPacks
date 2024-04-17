@@ -1,38 +1,38 @@
-; 太庍閫蓍靽鱗 update.inf 
+; คำสั่งในไฟล์ update.inf 
 [Version]
-Signature                 = "$Windows NT$" ;抌刲蚎識� Windows 鉡郯侲譏癒膋�
-LanguageType              = %LangTypeValue% ; 襠捗檠奿 照靾菟竻膋� %% 鉡郯俁芷 Windows 佬隞獍霽煬頨藤煤握堻±佴港
-NtBuildToUpdate           = 2195 ; 碣霽鼒涷佬嗨﹠捋鉥�
-NtMajorVersionToUpdate    = 5 ;方疰嵙� OS 煬魬芷
+Signature                 = "$Windows NT$" ;ส่วนหัวสำหรับ Windows เมื่อเรียกใช้
+LanguageType              = %LangTypeValue% ; รหัสภาษา ทำไมต้องใช้ %% เมื่อใช้ Windows จะไปโหลดที่บรรทัดคุณกำหนดไว้
+NtBuildToUpdate           = 2195 ; บิลด์ที่จะถูกอัปเดต
+NtMajorVersionToUpdate    = 5 ;ค่ารุ่น OS ที่ใช้
 NtMinorVersionToUpdate    = 0
 MaxNtBuildToUpdate        = 2195 
 MaxNtMajorVersionToUpdate = 5
 MaxNtMinorVersionToUpdate = 0
 MinNtServicePackVersion   = 0
-MaxNtServicePackVersion = 1024 ;贈頩 SP 煬魬芷
-ThisServicePackVersion    = 1024 ;廕�
-CatalogFile               = sp4.cat ;靽鱗匹畛酷芫檐� 籤轉怎嫣衡�
-MachineType               = ; 譜種疚埭卄� OS 煬魬芷 98(友錨劂譜鈮涷隙頩鈮骳塾頩)
+MaxNtServicePackVersion = 1024 ;รุ่น SP ที่ใช้
+ThisServicePackVersion    = 1024 ;แบน
+CatalogFile               = sp4.cat ;ไฟล์ความปลอดภัย ลายเซ็นไฟล์
+MachineType               = ; ระบุชนิดของ OS ที่ใช้ 98(คอมในประเทศญี่ปุ่นเท่านั่น)
 
-[Register.Include] ; 臾握蚘桎� 抌 Reg 煬韏樿均疰膋�
-RegCondition=AutoUpdate.Reg.Install.Condition ;膋樨駍嘈捚疑繩挬煬韏樿均疰膋�
+[Register.Include] ; ชุดคำสั่ง ส่วน Reg ที่ต้องการใช้
+RegCondition=AutoUpdate.Reg.Install.Condition ;ใช้ส่วนหัวบรรทัดที่ต้องการใช้
 RegCondition=Atapi48bit1.Reg.Install.Condition
 RegCondition=Atapi48bit2.Reg.Install.Condition
 RegCondition=AtapiWaitOnBusy.Reg.Install.Condition
 
 ;
-; 萃鎔狶
+; ตัวอย่าง
 ;
 [AutoUpdate.Reg.Install.Condition]
 
-InstallFromSection = AutoUpdate.Registry.Install ;譜種 太庍閫煬韏埭萃擏(廕滿蚎僑)
-Operation = CheckInstall,  wuaueng.dll, new\wuaueng.dll (腕庋滿疰菠斯桄�)
-TargetFromSection = CopyAlways.System32.Files (譜種太庍閫天棠矷)
+InstallFromSection = AutoUpdate.Registry.Install ;ระบุ คำสั่งที่ติดตั้ง(แบบกำหนด)
+Operation = CheckInstall,  wuaueng.dll, new\wuaueng.dll (ตรวจสอบการติดตั้ง)
+TargetFromSection = CopyAlways.System32.Files (ระบุคำสั่งคัดลอก)
 
 [Atapi48bit1.Reg.Install.Condition]
 
 InstallFromSection = Atapi48bit.Registry.Install
-Operation = CheckFileVer, atapi.sys, ==, 5.0.2195.4529 ; ÷繭蠅京芮鉲芤鴘桎嫣衡�
+Operation = CheckFileVer, atapi.sys, ==, 5.0.2195.4529 ; การตรวจสอบเวอร์ชั่นไฟล์
 TargetFromSection = Drivers.Files
 
 [Atapi48bit2.Reg.Install.Condition]
@@ -48,7 +48,7 @@ Operation = CheckFileVer, atapi.sys, ==, 5.0.2195.5762
 TargetFromSection = Drivers.Files
 
 [AutoUpdate.Registry.Install]
-DelReg=AutoUpdate.DelReg ;譜種驕 佸谹鉧婰�
+DelReg=AutoUpdate.DelReg ;ระบุลบ หรือเพิ่ม
 AddReg=AutoUpdate.AddReg
 
 [Atapi48bit.Registry.Install]
@@ -58,7 +58,7 @@ AddReg=Atapi48bit.AddReg
 AddReg=AtapiWaitOnBusy.AddReg
 
 ;
-; 譜種煬韏桄找衡絯 廕� Id
+; ระบุที่ตั้งไฟลฺ์ แบบ Id
 ;
 [DirectoryId.Include]
 AddDirId=Hyper.DirId
@@ -80,14 +80,14 @@ AddDirId=MSI20.DirId
 AddDirId=DontRemoveOnUninst.DirId
 
 ;
-; 萃鎔狶
+; ตัวอย่าง
 ;
 [Hyper.DirId]
 
 DirId = 65605 ; Id
-InstallPathRegistryKey = HKLM,%HyperRegKey% ;譜種酷畟煉坎竻 Reg
+InstallPathRegistryKey = HKLM,%HyperRegKey% ;ระบุปลายทางของ Reg
 InstallFromSection = HyperSection
-CopyFlags = SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY ; ±佴氮溯煬駖鎔狶鉥梒�
+CopyFlags = SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY ; กำหนดแทนที่อย่างเดียว
 
 [RISAdm.DirId]
 
@@ -169,7 +169,7 @@ CopyFlags = SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
 [SupportTools.DirId]
 
 DirId = 65626
-CustomFunction=SpCustom.dll,GetSupportToolsPathName ; 臾握蚘桎孚涷膋樿蹙魬� DLL 佬嗨～芷鉬蝜戰鉎�
+CustomFunction=SpCustom.dll,GetSupportToolsPathName ; ชุดคำสั่งที่ใช้อยู่ใน DLL จะถูกใช้เป็นพิเศษ
 InstallFromSection = SupportToolsSection
 CopyFlags = SP_COPY_FORCE_NEWER | SP_COPY_REPLACEONLY
 
@@ -201,12 +201,12 @@ InstallFromSection=DontRemoveOnUninstallSection
 InstallStage=BeforeArchive
 CopyFlags=SP_COPY_FORCE_NEWER
 
-[ProductCatalogsToInstall] ; 菠斯桄找衡鴗覬攪替挹 
+[ProductCatalogsToInstall] ; ติดตั้งไฟล์ความปลอดภับ 
 
 sp4.cat, update\sp4.cat
 nt5prtx.cat
 
-[ProductCatalogsToInstall.IP] ; 刳℅梖籤轉鏈股頩 尺陬樿廷鏑狶愬� 慞陏郕嵕嬝憵棹鏈膋�
+[ProductCatalogsToInstall.IP] ; หากมีหลายเวอร์ชั่น คุณต้องสร้างแยก และระบุโพล์เดอร์ใช้
 
 nt5inf.cat, ip\nt5inf.cat
 
@@ -226,7 +226,7 @@ nt5inf.cat, iw\nt5inf.cat
 
 nt5inf.cat, id\nt5inf.cat
 
-[ProductInstall.ReplaceFilesIfExist] 廗僩涷靽鱗園畛湴衡壒蹙頞橏靽鱗蒶錘﹊骳
+[ProductInstall.ReplaceFilesIfExist] แทนที่ไฟล์ถ้ามีไฟล์อยู่ถ้าไฟล์ใหม่กว่า
 
 DelFiles=Drivercab.Delfiles
 DelFiles=ServicePackDeleteFiles
@@ -296,20 +296,20 @@ CopyFiles=WebFolders.Files
 DelFiles=System32.Delfiles
 DelFiles=WebPrinters.Delfiles
 
-[Nec98Section] ;萃纔矷弝佸挹 PC98 ; 銧鏈弝佸挹 PC98
+[Nec98Section] ;ตัวเลือกสำหรับ PC98 ; ไดร์สำหรับ PC98
 
 CopyFiles=NEC98.Drivers.Files 
 CopyFiles=NEC98.Cache.Files
 
 [ProductInstall.DontDelayUntilReboot]
-;- 靽鱗鉖髓珗淶佬菟竻嗨﹥溯煬銵駖嘔梣棫 靾魬芾髓猁橏邦﹊骳佬譏稱�
-;- 鉆郯竻例℅捸疰獍霽∟芧煬閮迡豻墊飽疰滮暾髓猁橏邦勣岔梣棫
+;- ไฟล์เหล่านี้จะต้องถูกแทนที่ก่อนรีบูต ไม่ใช่ล่าช้าจนกว่าจะรีบูต
+;- เนื่องจากมีการโหลดก่อนที่จะดำเนินการโค้ดล่าช้าจนถึงรีบูต
 CopyFiles=MustReplace.System32.Files
 CopyFiles=MustReplace.IIS.Files
 CopyFiles=Osldr.Files
 CopyFiles=Drivers.Files
 
-[ProductInstall.CopyFilesAlways] ; 鉬蝜÷瓣挬攪∩衡儢△� 廘頞橏轅抌酵苤芮卄抉鏈股頩邰頩煬鳼錘膋擏珗 尺釣迮樿均蚎僑愬�
+[ProductInstall.CopyFilesAlways] ; เป็นการคัดลอกไฟล์ปกติ แต่ถ้ามีส่วนประกอบของเวอร์ชั่นอื่นที่ไม่ใช้งาน คุณจะต้องกำหนดแยก
 CopyFiles=CopyAlways.Templates.Files
 CopyFiles=CopyAlways.System32.Files
 CopyFiles=CopyAlways.Drivers.Files
@@ -388,7 +388,7 @@ CopyFiles=AutoUpdate.System32.Files
 CopyFiles=AutoUpdate.Help.Files
 CopyFiles=AutoUpdate.Adm.Files
 
-[ProductInstall.DataCenterFiles] 太庍閫菠斯桄找衡壖蚎識筵菔髓冓鏈股頩
+[ProductInstall.DataCenterFiles] คำสั่งติดตั้งไฟล์สำหรับแต่ล่ะเวอร์ชั่น
 
 CopyFiles=DataCenter.Inf.Files
 CopyFiles=DataCenter.Cache.Files
@@ -430,28 +430,28 @@ CopyFiles=Professional.Templates.Files
 DelReg=Product.Del.Reg.Professional
 AddReg=Product.Add.Reg.Professional,ResetAU.AddReg
 
-[ProductInstall.UniprocessorFiles] ; 太庍閫菠斯桄找衡壖蚎識� CPU 1 Core
+[ProductInstall.UniprocessorFiles] ; คำสั่งติดตั้งไฟล์สำหรับ CPU 1 Core
 
 CopyFiles=Uniprocessor.Kernel.Files
 
-[ProductInstall.MultiprocessorFiles] ; 太庍閫菠斯桄找衡壖蚎識� CPU 侜畟 Core
+[ProductInstall.MultiprocessorFiles] ; คำสั่งติดตั้งไฟล์สำหรับ CPU หลาย Core
 
 CopyFiles=Multiprocessor.Kernel.Files
  
-[ProductInstall.GlobalRegistryChanges.Install] ; 太庍閫鉧婰� Reg 鉬纓餔嫗酷弄譙侲戰餑 
+[ProductInstall.GlobalRegistryChanges.Install] ; คำสั่งเพิ่ม Reg เปลี่ยนแปลงหรือเพิ่ม 
 
 AddReg=Product.Add.Reg, Product.RunOnce
 DelReg=Product.Del.Reg
 DelReg=IE.DelReg
 
-[ProductInstall.GlobalRegistryChanges.ReInstall] ;太庍閫塹橚牷尺傅� patch 慞苳堻佬菟竻鉧婰趨捸疑繩挬
+[ProductInstall.GlobalRegistryChanges.ReInstall] ;คำสั่งนี้หากคุณลบ patch และคุณจะต้องเพิ่มอีกบรรทัด
 
 AddReg=Product.Add.Reg, Product.RunOnce
 DelReg=Product.Del.Reg
 
 ;
-; 譜犖 轅÷蹴ａ疰刲� 2 鉲芤鴘桎� 轄萃擏廘駔蹊� Windows NT4.0 庠閫 鉬蝜抌酵苤芮 rsaenhs.dll 蹊嫩餌馱豁挹卄� Microsoft 鈮骳塾頩 慞郱狶識偕疻靾魰閩毯撢 
-; 佬嗨～芷蓍侲謄唌�/嶀凳珒�
+; ระบบ มีการเข้ารหัส 2 เวอร์ชั่น มาตั้งแต่สมัย Windows NT4.0 ซึ่ง เป็นส่วนประกอบ rsaenhs.dll มันเป็นความลับของ Microsoft เท่านั่น และทางรัฐบาลไม่เปิดเผย 
+; จะถูกใช้ในอเมริกา/แคนนาดา
 
 [ProductInstall.56BitFiles]
 
@@ -465,11 +465,11 @@ CopyFiles=System32.128bit.Files
 CopyFiles=Drivers.128bit.Files
 CopyFiles=Cache.128bit.Files
 
-[ServicesToStopAndStart] ; ±佴景譎÷璽竻 OS 煬韏樿均疰侁奡佸谹鈱婰�
+[ServicesToStopAndStart] ; กำหนดบริการของ OS ที่ต้องการหยุดหรือเริ่ม
 
 
 ;
-; 抌酵苤芮弝佸挹 OS 鉡郯秅堻遉梒� 
+; ส่วนประกอบสำหรับ OS เมื่อคุณเขียน 
 ;
 
 [ProxySection] 
@@ -592,7 +592,7 @@ AddReg=DataAccess.AddReg
 AddReg=OE.AddReg
 DelReg=OE.DelReg
 
-[DontRemoveOnUninstallSection] ; 太庍閫呯畛抌煬餕� SP Update 迋∩頗體�
+[DontRemoveOnUninstallSection] ; คำสั่งห้ามส่วนที่ลบ SP Update ออกไปแล้ว
 
 CopyFiles=DontRemoveOnUninstall.Files
 
@@ -603,7 +603,7 @@ spdwnw2k.exe,update\spdwnw2k.exe
 [ServicePackFilesAlways]
 
 
-[ServicePackFilesAlways.Files] ;太庍閫天棠矷說菠
+[ServicePackFilesAlways.Files] ;คำสั่งคัดลอกปกติ
 
 achg.htr
 aexp.htr
@@ -633,7 +633,7 @@ usbhub20.sys
 usbport.sys
 xenrx86.dll
 
-[ServicePackDirectoriesToUpdate] ; 太庍閫迕擒斯例﹦嬝憵棹鏈 Update 刳﹌籤轉鏈股頩 菟竻愬�
+[ServicePackDirectoriesToUpdate] ; คำสั่งอัพเดตจากโพล์เดอร์ Update หากหลายเวอร์ชั่น ต้องแยก
 
 compdata
 uniproc
@@ -652,7 +652,7 @@ win9xupg
 win9xupg\jpnime
 
 ;
-; 萃鎔狶
+; ตัวอย่าง
 ;
 [ServicePackDirectoriesToInsert.IP]
 
@@ -689,11 +689,11 @@ compdata,compdata
 [ServicePackDirectoriesToInsert.MW]
 
 ;
-; 太庍閫鄔懊陏郕� Windows 2000
+; คำสั่งเฉพาะระบบ Windows 2000
 ;
 
 
-[ServicePackJPNFiles] ; 膋樨蚎識� Microsoft IME 鉡郯豖籤臍疶狺堻來鉬蝜遉梒嫗癒
+[ServicePackJPNFiles] ; ใช้สำหรับ Microsoft IME เมื่อหลายภาษาคุณจำเป็นเขียนแยก
 
 imejp.ime,lang\jpn\imejp.ime
 imejpdct.dll,lang\jpn\imejpdct.dll
@@ -735,7 +735,7 @@ imekr98u.ime,lang\kor\imekr98u.ime
 korwbrkr.dll,lang\kor\korwbrkr.dll
 korwbrkr.lex,lang\kor\korwbrkr.lex
 
-[ProcessesToRun] ; 鈱梒～芷￣郕÷�
+[ProcessesToRun] ; เรียกใช้กระบวนการ
 
 "sptsupd.exe"
 "?%systemroot%\system32\sp4iis.exe -l"
@@ -753,7 +753,7 @@ ftpqfe.exe
 "%systemroot%\system32\perfvd.exe %systemroot%\system32\iisperf.txt"
 "%systemroot%\system32\spupdsvc.exe /install ""Enables Windows 2000 Service Pack Installer to complete its scheduled post-reboot tasks"""
 
-[ProcessesToRunBeforeUninstall] ; ￣郕÷蹴譏癒膋憿駖僎芧÷繭埭萃擏
+[ProcessesToRunBeforeUninstall] ; กระบวนการเรียกใช้ก่อนถอนการติดตั้ง
 
 "%systemroot%\system32\wzcsetup.exe /u /P"
 "sp4iis.exe -u"
@@ -761,24 +761,24 @@ ftpqfe.exe
 "%systemroot%\system32\perfvd.exe -p %sourcePath% %systemroot%\system32\iisperf.txt"
 "%systemroot%\system32\spupdsvc.exe" /delete
 
-[ProcessesToRunAfterUninstall] ; ￣郕侜悝例▲芧÷繭埭萃擏
+[ProcessesToRunAfterUninstall] ; กระบวนหลังจากถอนการติดตั้ง
 
 "%systemroot%\system32\spdwnw2k.exe"
 
-[ProcessesToRunBeforeArchive] ￣郕÷繩荍珗∟芧遄蝥靽鱗募
+[ProcessesToRunBeforeArchive] กระบวนการทำงานก่อนเก็บไฟล์ถาวร
 
 ?#MSI20Install,@MSI20Stage,"msiinst.exe /delayrebootq"
 
-[ProcessesToRunAfterReboot] ;  ￣郕÷蹴譏癒膋橚竊夾牷譏稱�
+[ProcessesToRunAfterReboot] ;  กระบวนการเรียกใช้หลังจากรีบูต
 
 "%systemroot%\system32\secedit.exe /configure /cfg %systemroot%\inf\spsecupd.inf /db %systemroot%\security\templates\spsecupd.sdb /log %systemroot%\security\logs\spsecupd.log"
 "%systemroot%\system32\spupdw2k.exe"
 
-[DirectoriesToCleanUp] ; ÷藷橏坎樿還饜毯獺溴譏
+[DirectoriesToCleanUp] ; การล้างข้อมูลไดเรกทอรี
 
 Directory,"%windir%\system32\msiinst.tmp"
 
-[Save.Reg.For.Uninstall] ; REG 侜悝例▲芧菠斯桄� 尺陬樿孚貤瓚蠅疑閟�
+[Save.Reg.For.Uninstall] ; REG หลังจากถอนติดตั้ง คุณต้องทำและรวบรวมเอง
 
 HKLM,SOFTWARE\Microsoft\Windows\CurrentVersion\Setup,ServicePackCachePath
 HKLM,SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{5D0930A0-%WSEDIR%-433A-8BB9-602665550DD0},"SystemComponent"
@@ -1086,7 +1086,7 @@ HKCR,"Interface\{C28C2D95-B7DE-11D2-A421-00C04F79FE8E}\TypeLib"
 HKCR,"TypeLib\{5B9169C0-DB65-42AA-A38A-0726846AAEB3}"
 HKLM,"Software\Microsoft\Internet Explorer\ActiveX Compatibility\{43F8F289-7A20-11D0-8F06-00C04FC295E1}", "Compatibility Flags"
 
-[Product.Del.Reg] ; 驕 Reg
+[Product.Del.Reg] ; ลบ Reg
 
 HKLM,SOFTWARE\Microsoft\Updates\Windows 2000\SP0
 HKLM,SOFTWARE\Microsoft\Updates\Windows 2000\SP1
@@ -1109,14 +1109,14 @@ HKCR,"CLSID\{D7D6E082-DCCD-11d0-AA4B-0060970DEBAE}\implemented categories"
 HKCR,"CLSID\{D7D6E084-DCCD-11d0-AA4B-0060970DEBAE}\implemented categories"
 HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Print\Providers\LanMan Print Services\Servers"
 HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\appcompatibility\setup.exe","67"
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Windows 2000 憮綠蝶 "
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Windows 2000 ผญบ๑ฝบ ฦั"
 HKCR,"CLSID\{80CB7887-20DE-11D2-8D5C-00C04FC29D45}\Implemented Categories\{7DD95801-9882-11CF-9FA9-00AA006C42C4}"
 HKCR,"CLSID\{80CB7887-20DE-11D2-8D5C-00C04FC29D45}\InprocServer32"
 HKCR,"CLSID\{80CB7887-20DE-11D2-8D5C-00C04FC29D45}\ProgID"
 HKCR,"CLSID\{80CB7887-20DE-11D2-8D5C-00C04FC29D45}\Programmable"
 HKCR,"CLSID\{80CB7887-20DE-11D2-8D5C-00C04FC29D45}\VersionIndependentProgID"
 
-[Product.Add.Reg] 鉧婩� Reg 刳℅梛駍劂譜﹠睿郯飾竻 OS 尺陬樿抉Ｇ繒愬� 慞陏閟�
+[Product.Add.Reg] เพิ้ม Reg หากมีส่วนประกอบอื่นของ OS คุณต้องเขียนแยก และรวมเอง
 
 HKLM,SOFTWARE\Classes\Msi.Package\shell\Open\command,,,"""%11%\msiexec.exe"" /i ""%1"" %*"
 HKLM,SOFTWARE\Classes\Msi.Package\shell\Repair\command,,,"""%11%\msiexec.exe"" /f ""%1"" %*"
@@ -1918,7 +1918,7 @@ HKLM,SYSTEM\CurrentControlSet\Services\atapi\Parameters,"WaitOnBusyOnPowerUp",0x
 [Product.RunOnce]
 
 
-[ServicePackFiles.IP] ;太庍閫天棠矷說菠 廘頠△� 慞迮畛湧臥駖靽鱗
+[ServicePackFiles.IP] ;คำสั่งคัดลอกปกติ แต่ปกติ และตามด้วยชื่อไฟล์
 CopyFiles=ServicePackFiles.IP.Files
 CopyFiles=ServicePackFiles.CommonFiles
 CopyFiles=ServicePackJPNFiles
@@ -2208,7 +2208,7 @@ basicsv.inf, ip\basicsv.inf
 hptxnt5.sys, ip\hptxnt5.sys
 e100bnt5.sys, ip\e100bnt5.sys
 
-[ServicePackFiles.CommonFiles] ;靽鱗 SP 侜恁
+[ServicePackFiles.CommonFiles] ;ไฟล์ SP หลัก
 ntldr
 mf.sys
 hh.exe
@@ -3423,7 +3423,7 @@ cipher.exe
 ftpsapi2.dll
 axperf.ini
 
-[SourceDisksFiles] ;太庍閫煬駖蹙鳼衡鼒涷蓍 patch 慞迮樿坐挬攪� 苂骳樊晶埭鉥梒�
+[SourceDisksFiles] ;คำสั่งที่อยู่ไฟล์ที่ใน patch และต้องคัดลอก อย่าผิดนิดเดียว
 
 new\sp4iis.exe=1
 aexp2b.htr=1
@@ -3450,7 +3450,7 @@ anot.htr=1
 achg.htr=1
 aexp.htr=1
 
-[DestinationDirs] ; 煬韏桄坎竻靽鱗 尺釣迮樿岔郕嵑餌僱捚鉣Ｒ瑁珗桎� 刳﹤抎僩狶嗨△樿� 廘駖蹙魬嫖嬝憵棹鏈 佬菟竻蒘� "臥駖熅鱗鉥芤�"
+[DestinationDirs] ; ที่ตั้งของไฟล์ คุณจะต้องระบุเป็นตัวเลขเท่านั่น หากเส้นทางถูกต้อง แต่อยู่ในโพล์เดอร์ จะต้องใส่ "ชื่อโพล์เดอร์"
 SystemRoot.Files=10             ; %windir% (replace if exist)
 CopyAlways.Templates.Files=10,security\templates
 System.Files=10,"System"        ; %windir%
@@ -3653,7 +3653,7 @@ CopyAlways.IE.DE.Files=11,ie_de          ; %windir%\system32\ie_de (copy even if
 
 
 ;
-; 鉬蝜太庍閫天棠矷靽鱗 廘銴堻菟竻遉梒僱畛臥駖 蓍抌 DestinationDirs
+; เป็นคำสั่งคัดลอกไฟล์ แต่คุณต้องเขียนตามชื่อ ในส่วน DestinationDirs
 ;
 [AutoUpdate.System32.Files]
 
@@ -9053,26 +9053,26 @@ xenroll.dll=1
 xenrx86.dll=1
 xrxnui.dll=1
 
-[UninstallSections.PRE.SP3] ; 太庍閫萃纔矷蓍÷繹芧鉧婰醜菠� 
+[UninstallSections.PRE.SP3] ; คำสั่งตัวเลือกในการถอนเพิ่มเติม 
 
 DestinationDirs,DestinationDirs.Uninstall.PRE.SP3
 RestoreFiles,RestoreFiles.Uninstall.PRE.SP3
 AllUsersStartMenu.DelFiles,AllUsersStartMenu.DelFiles.Uninstall.PRE.SP3
 
-[UninstallSections] 鉖避芧迕劃�
+[UninstallSections] เหมือนอันบน
 
 GlobalRegistryChanges, GlobalRegistryChanges.Uninstall
 Del.Reg, Del.Reg.Uninstall
 
-[DestinationDirs.Uninstall.PRE.SP3] 譜種煬韏桄扼飽疰傯僱埭萃擏靽鱗
+[DestinationDirs.Uninstall.PRE.SP3] ระบุที่ตั้งในการถอนติดตั้งไฟล์
 
 AllUsersStartMenu.DelFiles = 16406       ; %allusersprofile%\Start Menu
 
-[RestoreFiles.Uninstall.PRE.SP3] 尤馱骳靽鱗
+[RestoreFiles.Uninstall.PRE.SP3] คืนค่าไฟล์
 
 DelFiles = AllUsersStartMenu.DelFiles
 
-[AllUsersStartMenu.DelFiles.Uninstall.PRE.SP3] 太庍閫驕 Shortcut
+[AllUsersStartMenu.DelFiles.Uninstall.PRE.SP3] คำสั่งลบ Shortcut
 
 "%CONFIGURE_PROGRAMS%.lnk"
 
@@ -9084,7 +9084,7 @@ DelReg=Del.Reg
 
 HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Print\Providers\LanMan Print Services\Servers"
 
-[Strings] ;妗譎孚涷尺陬樿岔郕嵎瓚來鉬蝜
+[Strings] ;สตริงที่คุณต้องระบุและจำเป็น
 
 CMAKRegkey=SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Cmak.exe
 ProxyRegKey=SYSTEM\CurrentControlSet\Services\WSPSrv\Parameters
@@ -9093,36 +9093,24 @@ HyperRegKey=SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\hypertrm.exe
 EudcRegKey=Software\Microsoft\Windows\CurrentVersion\App Paths\eudcedit.exe
 AdmtRegKey=SOFTWARE\Mission Critical Software\DomainAdmin
 TsclientRegKey=SOFTWARE\Classes\conman.exe\DefaultIcon
-BUILDTIMESTAMP       = ; ±佴棗揤煬駔鏑狶靽鱗鉌醮�
-LangTypeValue           = 17 ; 襠捗檠奿
+BUILDTIMESTAMP       = ; กำหนดวันที่สร้างไฟล์เสร็จ
+LangTypeValue           = 17 ; รหัสภาษา
 WSEDIR                  = "1041" 
 TSCLIENTDIR             = "Terminal Services Client"
-PORTUGAL                = "��"
-FALKLANDS               = "����"
-USER_NAME               = "�:"
-PASSWORD                = "�:"
-DOMAIN                  = "��:"
-CREDENTIALS             = " DNS �:"
-SP_TITLE                = "Windows 2000 Service Pack 4" ;臥駖鉾鉞婩韁涷尺陬樿扼芷
-SP_SHORT_TITLE          = "Service Pack 4" ; 臥駖鉾鉞婩戀桄�
-SP_KB_NUMBER            = "Q327194" ; 譜種臥駖鎔�
-ServicePackSourceFiles  = "Windows 2000 Service Pack 4  �"
-WUCUN_TS_JOBFILE        = "Windows .job"
+SP_TITLE                = "Windows 2000 Service Pack 4" ;ชื่อไตเติ้ลที่คุณต้องใช้
+SP_SHORT_TITLE          = "Service Pack 4" ; ชื่อไตเติ้ลสั้น
+SP_KB_NUMBER            = "Q327194" ; ระบุชื่อย่อ
+ServicePackSourceFiles  = "Windows 2000 Service Pack 4"
 BITS_DISPLAY_NAME       = "Background Intelligent Transfer Service"
-BITS_DESCRIPTION        = "��������Windows Update  MSN Explorer  BITS �����"
 BITS_CLASS_NAME         = "Background Intelligent Transfer Control Class 1.0"
 LEGACY_BITS_CLASS_NAME  = "Legacy Background Intelligent Transfer Control Class"
-AU_DESCRIPTION          = " Windows Update �����Windows Update  Web �� �"
 AU_DISPLAY_NAME         = "Automatic Updates"
-CONFIGURE_PROGRAMS      = "���"
 DESC_IE="Internet Explorer"
-DESC_IEAccess="Internet Explorer "
-DESC_OEAccess="Outlook Express "
+DESC_IEAccess="Internet Explorer ANZX"
+DESC_OEAccess="Outlook Express ANZX"
 DESC_WMP="Windows Media Player"
-PEAP-DispName               = " EAP (PEAP)"
-EAPMSCHAP-DispName          = "��� (EAP-MSCHAP v2)"
 
-[Configuration] ;÷繭桄坐骳卄孝捚菠斯桄�
+[Configuration] ;การตั้งค่าของตัวติดตั้ง
 InstallationType        = Update
 UnInstallDirName        = $NtServicePackUninstall$
 InstallLogFileName      = svcpack.log
@@ -9133,5 +9121,5 @@ EventLogKeyName         = NtServicePack
 EventLogDllName         = spmsg.dll
 
 ;
-; 蓍 XP Ｈ暽隞 佬轅靽鱗 鄔懊倇牶眝捋鉞揣竻萃竻Ｆ暽隞漺臏� updatebr.inf 鉬蝜±佴棵牶� 慞� branches.inf
+; ใน XP ขึ้นไป จะมีไฟล์ เฉพาะสาขาอัปเตดของตัวเองขิ้นไปโดยมี updatebr.inf เป็นกำหนดสาขา และ branches.inf
 ;
